@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title> Трансформация и анимация</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src="http://d3js.org/d3.v7.min.js"> </script>
+    <script src="JavaScript/main.js"></script>
+    <script src="JavaScript/image.js"></script>
+    <script src="JavaScript/path.js"></script>
+</head>
+<body>
+
+<form id="setting">
+    <p id="scaleBlock">Масштаб<br>
+        <label for="sx">по x: </label>
+        <input type="number" id="sx" value="1" max="50" min="0"> <span class="to-hint">до</span>
+        <input type="number" id="to_sx" value="1" max="50" min="0"><br>
+        <label for="sy">по y: </label>
+        <input type="number" id="sy" value="1" max="50" min="0"> <span class="to-hint">до</span>
+        <input type="number" id="to_sy" value="1" max="50" min="0">
+    </p>
+    <p id="rotateBlock">Поворот<br>
+        <label for="rad">угол: </label>
+        <input type="number" id="rad" value="0" max="360" min="0"> <span class="to-hint">до</span>
+        <input type="number" id="to_ad" value="0" max="360" min="0"><br>
+    </p>
+    <p id="speedBlock">Скорость анимации<br>
+        <label for="rad">коэффициент скорости: </label>
+        <input type="number" id="speed" value="1"> <span class="to-hint">
+    </p>
+    <br>
+    <input type="button" id="animateBtn" value="Анимировать">
+    <input type="button" id="clearBtn" value="Очистить">
+</form>
+
+<svg></svg>
+
+</body>
+</html>

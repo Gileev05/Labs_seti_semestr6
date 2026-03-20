@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 const draw = (form) => {
     const svg = d3.select("svg");
-    let pict = drawSmile(svg);
+    let pict = drawCircle(svg);
 
     const cx = Number(form.select("#cx").property("value"));
     const cy = Number(form.select("#cy").property("value"));
@@ -88,7 +88,7 @@ const easeMap = {
 
 const runAnimation = (form) => {
     const svg = d3.select("svg");
-    let pict = drawSmile(svg);
+    let pict = drawCircle(svg);
 
     const pathMove = d3.select("#pathMove").property("checked");
 
