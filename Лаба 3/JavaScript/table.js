@@ -1,7 +1,6 @@
 // создание таблицы
 const showTable = (idTable, data) => {
     const table = d3.select("#" + idTable);
-
     // создание строк таблицы (столько, сколько элементов в массиве)
     const rows = table
         .selectAll("tr")

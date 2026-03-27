@@ -7,9 +7,35 @@
     <script src="JavaScript/data.js"></script>
     <script src="JavaScript/main.js"></script>
     <script src="JavaScript/table.js"></script>
+    <script src="JavaScript/chart.js"></script>
 </head>
 <body>
 <h3>Список самых высоких зданий</h3>
+<p>Значение по оси OX</p>
+<label for="ox_country">Страна</label>
+<input type="radio" value="Страна" id="ox_country" name="ox" checked="checked">
+<label for="ox_year">Год</label>
+<input type="radio" value="Год" id="ox_year" name="ox">
+
+<p>Значение по оси OY</p>
+<form id="oy_select">
+    <label for="oy_max">Максимум</label>
+    <input type="checkbox" value="max_height" id="oy_max" name="oy" checked="checked">
+    <label for="oy_min">Минимум</label>
+    <input type="checkbox" value="min_height" id="oy_min" name="oy">
+</form>
+<br>
+<label for="graphType">Тип графика</label><select id="graphType" name="graphType">
+    <option value="dotted">Точечная</option>
+    <option value="gist">Гистограмма</option>
+</select>
+<br>
+<input type="button" id="draw" value="Построить график">
+<br>
+<svg></svg>
+<br>
+<input type="button" id="showBtn" value="Показать"  style="display: none;">
+<input type="button" id="hideBtn" value="Скрыть">
 <table id="build">
 </table>
 </body>
