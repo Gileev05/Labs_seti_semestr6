@@ -20,7 +20,7 @@
 			<form>
   			<p>
                 <label>
-                    <input  id="city" type="radio" name="ox" value="город">
+                    <input  id="city" type="radio" name="ox" value="город" checked="checked">
                 </label> Город съёмок <br>
                 <label>
                     <input  id="year" type="radio" name="ox" value="год">
@@ -31,18 +31,20 @@
             <b>Результат</b>
 			<form>
   			<p>
-                <label>
-                    <input  id="max_rate" type="checkbox">
-                </label> Рейтинг(макс.) <br>
-                <label>
-                    <input id="min_rate" type="checkbox">
-                </label> Рейтинг(min.)
+                <label for="max_rate">
+                    <input  id="max_rate" type="checkbox" checked="checked">
+                    Рейтинг(макс.)
+                </label><br>
+                <label for="min_rate">
+                    <input  id="min_rate" type="checkbox">
+                    Рейтинг(мин.)
+                </label>
  			</p>
 			</form>
 
 	<input id="build" type="button" value="Построить">
 
-    <svg></svg>
+    <svg width="800" height="600"></svg>
 	
 </details>
 

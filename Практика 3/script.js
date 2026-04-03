@@ -4,26 +4,20 @@ function loadDataFromTable() {
 
     rows.forEach(row => {
         const cells = row.querySelectorAll('td');
-        if (cells.length === 5) {
             movies.push({
-                название: cells[0].textContent.trim(),
                 год: parseInt(cells[1].textContent.trim()),
                 город: cells[2].textContent.trim(),
-                продолжительность: parseInt(cells[3].textContent.trim()),
                 рейтинг: parseFloat(cells[4].textContent.trim())
-            });
-        }
+        });
     });
 
     return movies;
 }
 
-
 document.addEventListener("DOMContentLoaded", function() {
     let movies = loadDataFromTable();
 
     const cityRadio = d3.select("#city");
-    const yearRadio = d3.select("#year");
     const maxCheckbox = d3.select("#max_year");
     const minCheckbox = d3.select("#min_year");
 
@@ -32,7 +26,22 @@ document.addEventListener("DOMContentLoaded", function() {
     minCheckbox.checked = true;
 
     drawGraph(movies, "город");
-})
+
+    d3.select("#build").on("click", function() {
+        let keyX = d3.select("#year").property("checked") ? "год" : "город";
+        drawGraph(movies, keyX);
+    });
+
+    d3.select('label[for="max_rate"]').on("click", function() {
+        d3.select('label[for="max_rate"]').style('color', null);
+        d3.select('label[for="min_rate"]').style('color', null);
+    })
+
+    d3.select('label[for="min_rate"]').on("click", function() {
+        d3.select('label[for="max_rate"]').style('color', null);
+        d3.select('label[for="min_rate"]').style('color', null);
+    })
+});
 
 function createArrGraph(data, key) {
 
@@ -75,6 +84,11 @@ function drawGraph(data, keyX) {
     let showMin = d3.select('#min_rate').property('checked');
     let showMax = d3.select('#max_rate').property('checked');
 
+    if (!showMin && !showMax) {
+        d3.select('label[for="max_rate"]').style('color', 'red');
+        d3.select('label[for="min_rate"]').style('color', 'red');
+    }
+
     const [scX, scY] = createAxis(svg, arrGraph, attr_area, keyX, showMin, showMax);
     createChart(svg, arrGraph, scX, scY, attr_area, showMin, showMax);
 }
@@ -101,7 +115,7 @@ function createAxis(svg, data, attr_area, keyX, showMin, showMax) {
         .padding(0.2);
 
     const scaleY = d3.scaleLinear()
-        .domain([Math.max(0, min * 0.9), max * 1.1])
+        .domain([7, max])
         .range([attr_area.height - 2 * attr_area.marginY, 0]);
 
     let axisX;
@@ -135,7 +149,7 @@ function createChart(svg, data, scaleX, scaleY, attr_area, showMin, showMax) {
     let barWidth_adjusted = barWidth;
 
     if (showMin && showMax) {
-        barWidth_adjusted = barWidth / 2 - 2;
+        barWidth_adjusted = barWidth / 2 - 3;
     } else {
         barWidth_adjusted = barWidth * 0.7;
     }
