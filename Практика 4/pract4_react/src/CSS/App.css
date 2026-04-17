@@ -1,0 +1,25 @@
+td, th {
+    border: 1px solid #ddd;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+
+}
+
+.pagination span {
+    margin: 0 8px;
+}
+
+.pagination span.active {
+    font-weight: bold;
+    color: blue;
+}
+
+.pagination span:hover {
+    color: darkblue;
+    text-decoration: underline;
+}
