@@ -1,6 +1,6 @@
 import TableHead from './TableHead.js';
 import TableBody from './TableBody.js';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Filter from './Filter.js';
 
 const Table = (props) => {
@@ -10,7 +10,19 @@ const Table = (props) => {
     const [dataTable, setDataTable] = useState(props.data);
     const [activePage, setActivePage] = useState("1");
 
-    const updateDataTable = (value) => setDataTable(value);
+    const updateDataTable = (value) => {
+        setDataTable(value);
+        if (props.onFilterChange) {
+            props.onFilterChange(value);
+        }
+    };
+
+    useEffect(() => {
+        setDataTable(props.data);
+        if (props.onFilterChange) {
+            props.onFilterChange(props.data);
+        }
+    }, [props.data]);
 
     const n = Math.ceil(dataTable.length / props.amountRows);
     const arr = Array.from({ length: n }, (v, i) => i + 1);

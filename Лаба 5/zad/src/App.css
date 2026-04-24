@@ -1,0 +1,7 @@
+table {
+    display: inline-block;
+}
+
+td {
+    border: 10px solid black;
+}

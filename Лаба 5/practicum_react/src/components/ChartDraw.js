@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { useEffect, useMemo, useRef, useState } from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
 
 const ChartDraw = (props) => {
     const chartRef = useRef(null);
@@ -7,13 +7,12 @@ const ChartDraw = (props) => {
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
 
-    // заносим в состояния ширину и высоту svg-элемента
     useEffect(() => {
         const svg = d3.select(chartRef.current);
         setWidth(parseFloat(svg.style('width')));
         setHeight(parseFloat(svg.style('height')));
     });
-    // задаем отступы в svg-элементе
+
     const margin = {
         top:10,
         bottom:60,
@@ -21,14 +20,20 @@ const ChartDraw = (props) => {
         right:10
     };
 
-    // вычисляем ширину и высоту области для вывода графиков
-    const boundsWidth = width -  margin.left - margin.right;
+    const boundsWidth = width - margin.left - margin.right;
     const boundsHeight = height - margin.top - margin.bottom;
 
-    const indexOY = 1; // диаграмма для максимальных значений
-    let [min, max] = d3.extent(props.data.map(d => d.values[1]));
+    const showMax = props.showValues[0];
+    const showMin = props.showValues[1];
 
-    // формируем шкалы для осей
+    let allMinValues = props.data.map(d => d.values[0]);
+    let allMaxValues = props.data.map(d => d.values[1]);
+    let allValues = [...allMinValues, ...allMaxValues];
+    let [globalMin, globalMax] = d3.extent(allValues);
+
+    if (globalMin === undefined) globalMin = 0;
+    if (globalMax === undefined) globalMax = 1;
+
     const scaleX = useMemo(() => {
         return d3
             .scaleBand()
@@ -39,15 +44,14 @@ const ChartDraw = (props) => {
     const scaleY = useMemo(() => {
         return d3
             .scaleLinear()
-            .domain([min * 0.85, max * 1.1 ])
+            .domain([globalMin * 0.85, globalMax * 1.1])
             .range([boundsHeight, 0])
-    }, [boundsHeight, min, max]);
+    }, [boundsHeight, globalMin, globalMax]);
 
     useEffect(() => {
         const svg = d3.select(chartRef.current);
         svg.selectAll("*").remove();
 
-        // рисуем оси
         const xAxis = d3.axisBottom(scaleX);
         svg .append("g")
             .attr("transform", `translate(${margin.left}, ${height - margin.bottom})`)
@@ -63,18 +67,68 @@ const ChartDraw = (props) => {
             .attr("transform", `translate(${margin.left}, ${margin.top})`)
             .call(yAxis);
 
-        //рисуем график
-        svg .selectAll(".dot")
-            .data(props.data)
-            .enter()
-            .append("circle")
-            .attr("r", 5)
-            .attr("cx", d => scaleX(d.labelX) + scaleX.bandwidth() / 2)
-            .attr("cy", d => scaleY(d.values[indexOY] ) )
-            .attr("transform", `translate(${margin.left}, ${margin.top})`)
-            .style("fill", "red")
+        const bandWidth = scaleX.bandwidth();
+        const offset = bandWidth / 4;
 
-    }, [scaleX, scaleY, props.data]);
+        if (props.graphType === "gist") {
+            if (showMax) {
+                svg.selectAll(".bar-max")
+                    .data(props.data)
+                    .enter()
+                    .append("rect")
+                    .attr("x", d => scaleX(d.labelX) + (showMax && showMin ? bandWidth / 5 : 10))
+                    .attr("y", d => scaleY(d.values[1]))
+                    .attr("width", bandWidth / (showMax && showMin ? 3 : 2))
+                    .attr("height", d => boundsHeight - scaleY(d.values[1]))
+                    .attr("transform", `translate(${margin.left}, ${margin.top})`)
+                    .style("fill", "red");
+            }
+
+            if (showMin) {
+                svg.selectAll(".bar-min")
+                    .data(props.data)
+                    .enter()
+                    .append("rect")
+                    .attr("x", d => scaleX(d.labelX) + (showMax && showMin ? bandWidth / 2 : 10))
+                    .attr("y", d => scaleY(d.values[0]))
+                    .attr("width", bandWidth / (showMax && showMin ? 3 : 2))
+                    .attr("height", d => boundsHeight - scaleY(d.values[0]))
+                    .attr("transform", `translate(${margin.left}, ${margin.top})`)
+                    .style("fill", "blue");
+            }
+        } else {
+            if (showMax) {
+                svg.selectAll(".dot-max")
+                    .data(props.data)
+                    .enter()
+                    .append("circle")
+                    .attr("r", 5)
+                    .attr("cx", d => scaleX(d.labelX) + bandWidth / 2)
+                    .attr("cy", d => {
+                        let y = scaleY(d.values[1]);
+                        if (showMax && showMin) y -= offset;
+                        return y;
+                    })
+                    .attr("transform", `translate(${margin.left}, ${margin.top})`)
+                    .style("fill", "red");
+            }
+
+            if (showMin) {
+                svg.selectAll(".dot-min")
+                    .data(props.data)
+                    .enter()
+                    .append("circle")
+                    .attr("r", 5)
+                    .attr("cx", d => {
+                        return scaleX(d.labelX) + bandWidth / 2;
+                    })
+                    .attr("cy", d => scaleY(d.values[0]))
+                    .attr("transform", `translate(${margin.left}, ${margin.top})`)
+                    .style("fill", "blue");
+            }
+        }
+
+    }, [scaleX, scaleY, props.data, props.graphType, showMax, showMin]);
 
     return (
         <svg ref={chartRef} >  </svg>
