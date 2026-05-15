@@ -1,0 +1,514 @@
+﻿<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Список фильмов</title>
+</head>
+<body>
+
+<h3>
+	<a href="Советские%20фильмы.html">
+	Советские фильмы
+	</a>
+</h3>
+
+<details>
+	<summary>График</summary>
+
+
+			<b>Значение по оси X</b>
+
+
+			<form>
+  			<p>
+                <label>
+                    <input  id="city" type="radio" value="1">
+                </label> Город съёмок <br>
+                <label>
+                    <input  id="year" type="radio" value="2">
+                </label> Год выпуска
+ 			</p>
+			</form>
+
+            <b>Результат</b>
+			<form>
+  			<p>
+                <label>
+                    <input  id="max_rate" type="checkbox" value="1">
+                </label> Рейтинг(макс.) <br>
+                <label>
+                    <input id="min_rate" type="checkbox" value="2">
+                </label> Рейтинг(min.)
+                <label>
+                    <input id="mid_rate" type="checkbox" value="2">
+                </label> Рейтинг(среднее)
+ 			</p>
+			</form>
+
+	<input id="build" type="button" value="Построить">
+	
+</details>
+
+<details>
+	<summary>Фильтр</summary>
+
+	<form>
+ 	Название:
+        <label>
+            <input id="name" type="text">
+        </label>
+    </form>
+
+	<form>
+ 	Рейтинг:
+        <label>
+            <input id="rate" type="text">
+        </label>
+    </form>
+
+	<form>
+ 	Город съёмок:
+        <label>
+            <input id="city_filter" type="text">
+        </label>
+    </form>
+
+    <form>
+        Год выпуска:
+        <label>
+            от <input id="year_from" type="number">
+        </label>
+        <label>
+            до <input id="year_to" type="number">
+        </label>
+    </form>
+
+    <form>
+        Продолжительность:
+        <label>
+            от <input id="duration_from" type="number">
+        </label>
+        <label>
+            до <input id="duration_to"  type="number">
+        </label>
+    </form>
+
+    <input id="build_filter" type="button" value="Найти">
+</details>
+
+<details>
+	<summary>Сортировка</summary>
+
+    Первый уровень:
+    <label>
+        <select>
+            <option value="0"> Нет </option>
+            <option value="1"> Название </option>
+            <option value="2"> Год </option>
+            <option value="3"> Город </option>
+            <option value="4"> Продолжительность </option>
+            <option value="5"> Рейтинг </option>
+        </select>
+            <input  id="dec_1" type="checkbox" value="1">по убыванию? <br>
+    </label>
+
+    Второй уровень:
+    <label>
+        <select>
+            <option value="0"> Нет </option>
+            <option value="1"> Название </option>
+            <option value="2"> Год </option>
+            <option value="3"> Город </option>
+            <option value="4"> Продолжительность </option>
+            <option value="5"> Рейтинг </option>
+        </select>
+        <input  id="dec_2" type="checkbox" value="1">по убыванию? <br>
+    </label>
+
+    Третий уровень:
+    <label>
+        <select>
+            <option value="0"> Нет </option>
+            <option value="1"> Название </option>
+            <option value="2"> Год </option>
+            <option value="3"> Город </option>
+            <option value="4"> Продолжительность </option>
+            <option value="5"> Рейтинг </option>
+        </select>
+        <input  id="dec_3" type="checkbox" value="1">по убыванию? <br>
+    </label>
+
+    <input id="build_sort" type="button" value="Сортировать">
+
+</details>
+
+<br>
+<table>
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Год выпуска</th>
+        <th>Город съёмок</th>
+        <th>Продолжительность(мин.)</th>
+        <th>Рейтинг (КиноПоиск)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>«Ирония судьбы, или С лёгким паром!»</td>
+        <td>1975</td>
+        <td>Москва</td>
+        <td>184</td>
+        <td>8.2</td>
+    </tr>
+    <tr>
+        <td>«Москва слезам не верит»</td>
+        <td>1979</td>
+        <td>Москва</td>
+        <td>150</td>
+        <td>8.2</td>
+    </tr>
+    <tr>
+        <td>«Операция «Ы» и другие приключения Шурика»</td>
+        <td>1965</td>
+        <td>Ленинград</td>
+        <td>95</td>
+        <td>8.6</td>
+    </tr>
+    <tr>
+        <td>«Бриллиантовая рука»</td>
+        <td>1968</td>
+        <td>Москва</td>
+        <td>94</td>
+        <td>8.6</td>
+    </tr>
+    <tr>
+        <td>«Служебный роман»</td>
+        <td>1977</td>
+        <td>Москва</td>
+        <td>159</td>
+        <td>8.3</td>
+    </tr>
+    <tr>
+        <td>«Джентльмены удачи»</td>
+        <td>1971</td>
+        <td>Москва</td>
+        <td>88</td>
+        <td>8.5</td>
+    </tr>
+    <tr>
+        <td>«В бой идут одни «старики»</td>
+        <td>1973</td>
+        <td>Ленинград</td>
+        <td>92</td>
+        <td>8.7</td>
+    </tr>
+    <tr>
+        <td>«Неуловимые мстители»</td>
+        <td>1966</td>
+        <td>Феодосия</td>
+        <td>88</td>
+        <td>7.8</td>
+    </tr>
+    <tr>
+        <td>«Иван Васильевич меняет профессию»</td>
+        <td>1973</td>
+        <td>Москва</td>
+        <td>93</td>
+        <td>8.8</td>
+    </tr>
+    <tr>
+        <td>«Кавказская пленница, или Новые приключения Шурика»</td>
+        <td>1966</td>
+        <td>Ялта</td>
+        <td>82</td>
+        <td>8.5</td>
+    </tr>
+    <tr>
+        <td>«Девчата»</td>
+        <td>1961</td>
+        <td>Свердловск</td>
+        <td>92</td>
+        <td>8.3</td>
+    </tr>
+    <tr>
+        <td>«Белое солнце пустыни»</td>
+        <td>1969</td>
+        <td>Баку</td>
+        <td>84</td>
+        <td>8.3</td>
+    </tr>
+    <tr>
+        <td>«Приключения Шерлока Холмса и доктора Ватсона» (1-й фильм)</td>
+        <td>1979</td>
+        <td>Ленинград</td>
+        <td>135</td>
+        <td>8.7</td>
+    </tr>
+    <tr>
+        <td>«Любовь и голуби»</td>
+        <td>1984</td>
+        <td>Кемь</td>
+        <td>107</td>
+        <td>8.4</td>
+    </tr>
+    <tr>
+        <td>«Мимино»</td>
+        <td>1977</td>
+        <td>Москва</td>
+        <td>92</td>
+        <td>8.3</td>
+    </tr>
+    <tr>
+        <td>«Афоня»</td>
+        <td>1975</td>
+        <td>Москва</td>
+        <td>94</td>
+        <td>8.0</td>
+    </tr>
+    <tr>
+        <td>«12 стульев» (реж. Л. Гайдай)</td>
+        <td>1971</td>
+        <td>Ленинград</td>
+        <td>77</td>
+        <td>8.3</td>
+    </tr>
+    <tr>
+        <td>«Полосатый рейс»</td>
+        <td>1961</td>
+        <td>Ленинград</td>
+        <td>83</td>
+        <td>8.2</td>
+    </tr>
+    <tr>
+        <td>«Вокзал для двоих»</td>
+        <td>1982</td>
+        <td>Москва</td>
+        <td>141</td>
+        <td>8.1</td>
+    </tr>
+    <tr>
+        <td>«Кин-дза-дза!»</td>
+        <td>1986</td>
+        <td>Москва</td>
+        <td>135</td>
+        <td>8.3</td>
+    </tr>
+    <tr>
+        <td>«Гараж»</td>
+        <td>1979</td>
+        <td>Москва</td>
+        <td>95</td>
+        <td>8.1</td>
+    </tr>
+    <tr>
+        <td>«Офицеры»</td>
+        <td>1971</td>
+        <td>Москва</td>
+        <td>92</td>
+        <td>8.4</td>
+    </tr>
+    <tr>
+        <td>«Семнадцать мгновений весны»</td>
+        <td>1973</td>
+        <td>Москва</td>
+        <td>840</td>
+        <td>8.8</td>
+    </tr>
+    <tr>
+        <td>«Место встречи изменить нельзя»</td>
+        <td>1979</td>
+        <td>Москва</td>
+        <td>398</td>
+        <td>8.9</td>
+    </tr>
+    <tr>
+        <td>«Зеркало»</td>
+        <td>1975</td>
+        <td>Москва</td>
+        <td>107</td>
+        <td>8.2</td>
+    </tr>
+    <tr>
+        <td>«Сталкер»</td>
+        <td>1979</td>
+        <td>Таллин</td>
+        <td>163</td>
+        <td>8.2</td>
+    </tr>
+    <tr>
+        <td>«Андрей Рублёв»</td>
+        <td>1966</td>
+        <td>Москва</td>
+        <td>205</td>
+        <td>8.2</td>
+    </tr>
+    <tr>
+        <td>«Летят журавли»</td>
+        <td>1957</td>
+        <td>Москва</td>
+        <td>97</td>
+        <td>8.2</td>
+    </tr>
+    <tr>
+        <td>«Баллада о солдате»</td>
+        <td>1959</td>
+        <td>Москва</td>
+        <td>88</td>
+        <td>8.3</td>
+    </tr>
+    <tr>
+        <td>«Война и мир»</td>
+        <td>1966</td>
+        <td>Москва</td>
+        <td>431</td>
+        <td>8.3</td>
+    </tr>
+    <tr>
+        <td>«Доживём до понедельника»</td>
+        <td>1968</td>
+        <td>Москва</td>
+        <td>106</td>
+        <td>8.3</td>
+    </tr>
+    <tr>
+        <td>«Щит и меч»</td>
+        <td>1968</td>
+        <td>Москва</td>
+        <td>269</td>
+        <td>8.3</td>
+    </tr>
+    <tr>
+        <td>«Не горюй!»</td>
+        <td>1969</td>
+        <td>Тбилиси</td>
+        <td>90</td>
+        <td>8.1</td>
+    </tr>
+    <tr>
+        <td>«Старики-разбойники»</td>
+        <td>1971</td>
+        <td>Москва</td>
+        <td>85</td>
+        <td>8.1</td>
+    </tr>
+    <tr>
+        <td>«Солярис»</td>
+        <td>1972</td>
+        <td>Москва</td>
+        <td>167</td>
+        <td>8.1</td>
+    </tr>
+    <tr>
+        <td>«Спортлото-82»</td>
+        <td>1982</td>
+        <td>Москва</td>
+        <td>89</td>
+        <td>7.9</td>
+    </tr>
+    <tr>
+        <td>«Чародеи»</td>
+        <td>1982</td>
+        <td>Москва</td>
+        <td>138</td>
+        <td>7.9</td>
+    </tr>
+    <tr>
+        <td>«Мы из джаза»</td>
+        <td>1983</td>
+        <td>Москва</td>
+        <td>89</td>
+        <td>7.9</td>
+    </tr>
+    <tr>
+        <td>«Зимний вечер в Гаграх»</td>
+        <td>1985</td>
+        <td>Москва</td>
+        <td>88</td>
+        <td>7.8</td>
+    </tr>
+    <tr>
+        <td>«Покровские ворота»</td>
+        <td>1982</td>
+        <td>Москва</td>
+        <td>141</td>
+        <td>8.4</td>
+    </tr>
+    <tr>
+        <td>«Самая обаятельная и привлекательная»</td>
+        <td>1985</td>
+        <td>Москва</td>
+        <td>90</td>
+        <td>7.9</td>
+    </tr>
+    <tr>
+        <td>«Человек с бульвара Капуцинов»</td>
+        <td>1987</td>
+        <td>Москва</td>
+        <td>98</td>
+        <td>8.1</td>
+    </tr>
+    <tr>
+        <td>«Д'Артаньян и три мушкетёра»</td>
+        <td>1978</td>
+        <td>Москва</td>
+        <td>209</td>
+        <td>8.4</td>
+    </tr>
+    <tr>
+        <td>«Обыкновенное чудо»</td>
+        <td>1978</td>
+        <td>Москва</td>
+        <td>135</td>
+        <td>8.2</td>
+    </tr>
+    <tr>
+        <td>«Тот самый Мюнхгаузен»</td>
+        <td>1979</td>
+        <td>Москва</td>
+        <td>136</td>
+        <td>8.3</td>
+    </tr>
+    <tr>
+        <td>«Экипаж»</td>
+        <td>1979</td>
+        <td>Москва</td>
+        <td>134</td>
+        <td>7.9</td>
+    </tr>
+    <tr>
+        <td>«Мэри Поппинс, до свидания»</td>
+        <td>1983</td>
+        <td>Ленинград</td>
+        <td>147</td>
+        <td>8.0</td>
+    </tr>
+    <tr>
+        <td>«Гостья из будущего»</td>
+        <td>1984</td>
+        <td>Москва</td>
+        <td>265</td>
+        <td>8.3</td>
+    </tr>
+    <tr>
+        <td>«Приключения Электроника»</td>
+        <td>1979</td>
+        <td>Одесса</td>
+        <td>204</td>
+        <td>8.3</td>
+    </tr>
+    <tr>
+        <td>«Гостья из будущего»</td>
+        <td>1984</td>
+        <td>Москва</td>
+        <td>265</td>
+        <td>8.3</td>
+    </tr>
+    </tbody>
+</table>
+<p>
+
+</p>
+
+</body>
+</html>
