@@ -78,7 +78,7 @@ function Navbar({ active }) {
                                     </IconButton>
                                 </Box>
                                 <MenuList>
-                                    <MenuItem sx={{ '&:hover': { backgroundColor: '#5d8aa8', color: 'white' } }}>Главная</MenuItem>
+                                    <MenuItem sx={{ backgroundColor: '#5d8aa8', color: 'white' }}>Главная</MenuItem>
                                     <MenuItem sx={{ '&:hover': { backgroundColor: '#5d8aa8', color: 'white' } }}>Список зданий</MenuItem>
                                     <MenuItem sx={{ '&:hover': { backgroundColor: '#5d8aa8', color: 'white' } }}>Контакты</MenuItem>
                                 </MenuList>

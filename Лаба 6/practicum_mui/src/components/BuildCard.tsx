@@ -24,7 +24,7 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
 
 function BuildCard({building, index}: ComponentProps) {
     return (
-        <Card sx={{display: 'flex'}}>
+        <Card sx={{display: {xs: 'block', md: 'flex'}}}>
             <CardMedia
                 component="img"
                 alt={building.title}
