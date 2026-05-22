@@ -48,7 +48,7 @@ const App = (): JSX.Element => {
 
     const [columns, setColumns] = useState<ColumnsState>(startColumn);
 
-    const checkboxChange = (c: React.ChangeEvent<HTMLInputElement>) => {
+    const checkboxChange = (c: React.ChangeEvent<HTMLInputElement>): void => {
         setColumns({
             ...columns,
             [c.target.name]: c.target.checked,
