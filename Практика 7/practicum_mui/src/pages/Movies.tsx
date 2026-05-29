@@ -14,7 +14,6 @@ function Movie() {
                 <Navbar active="1" />
                 <Container sx={{ mt: 5, textAlign: 'center' }}>
                     <Typography variant="h5" color="error">Фильм не найден</Typography>
-                    <Link to="/" style={{ color: '#00bfff', textDecoration: 'none' }}>Вернуться на главную</Link>
                 </Container>
             </Box>
     );
