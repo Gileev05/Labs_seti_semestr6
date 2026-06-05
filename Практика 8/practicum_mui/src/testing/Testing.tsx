@@ -1,0 +1,1 @@
+import Navbar from "../components/Navbar";import Quiz from "./features/Quiz";function Testing() {    return (        <div>            <Navbar active="1"/>            <Quiz />        </div>    );}export default Testing;

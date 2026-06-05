@@ -1,6 +1,6 @@
 export type tTasks ={
-    "question": string; /* вопрос задания*/
-    "answer": string; /* ответ задания*/
+    "question": string;
+    "answer": string;
 }[]
 
 export type tQuizes = {

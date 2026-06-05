@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ListsState {
-    lists: string[][]; // хранит перемещаемые элементы каждого списка ответов
+    lists: string[][];
 }
 
 const initialState: ListsState = {
@@ -19,12 +19,11 @@ const listsSlice = createSlice({
         setDraggedItems: (state, action: PayloadAction<{ index: number; items: string[] }>) => {
             const { index, items } = action.payload;
             if (index >= 0 && index < state.lists.length) {
-                state.lists[index] = items; // обновляем конкретный список
+                state.lists[index] = items;
             }
         },
     },
 });
 
-// Экспортируем действия и редьюсер
 export const { addList, setDraggedItems } = listsSlice.actions;
 export default listsSlice.reducer;
